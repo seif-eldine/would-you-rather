@@ -1,0 +1,250 @@
+/* GLOBAL STYLE */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container{
+  width: 80%;
+  margin: auto;
+}
+
+select{
+  display: inline-block;
+  width: 100%;
+
+}
+
+form{
+  text-align: left;
+
+}
+
+input{
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+}
+
+button {
+  margin-top: 20px;
+  color: white;
+  background-color: #079e87;
+  border: 2px solid #a5c0bc;
+  border-radius: 5px;
+  padding: 4px 12px;
+  display: inline-block;
+  width: 100%;
+}
+
+input[type="radio"]{
+  margin-right: 6px;
+}
+
+
+/* Navbar STYLE */
+
+
+nav{
+  text-align: center;
+  border-bottom: 4px solid #079e87;
+  margin-bottom: 20px;
+
+}
+
+.left-side, .right-side {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+}
+
+ul li{
+  display: inline;
+  padding: 20px;
+}
+
+/* New Question Wrap STYLE */
+
+.newQues-section{
+  text-align: center;
+}
+.newQues-container{
+  border: 1px solid black;
+  display: inline-block;
+  padding: 40px;
+  border-radius: 2%;
+
+}
+
+/* Login Box STYLE */
+
+.login-box-section{
+  text-align: center;
+}
+
+.login-box{
+  border: 1px solid black;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 2%;
+
+}
+
+/* Home and Questions STYLE */
+
+.home-section{
+  text-align: center;
+}
+
+.home-container{
+  padding: 10px;
+  display: inline-block;
+
+}
+
+.unanswered-ques{
+  display: inline-block;
+  padding: 10px;
+  font-weight: bold;
+  color: #056052;
+  border-top-left-radius: 25px;
+  cursor: pointer;
+  border: 2px solid;
+}
+
+.answered-ques{
+  display: inline-block;
+  padding: 10px;
+  font-weight: bold;
+  color: #056052;
+  border-top-right-radius: 25px;
+  border: 2px solid;
+  cursor: pointer;
+}
+
+
+.ques-list{
+  border: 1px solid;
+  padding: 17px;
+  border-radius: 26px;
+  background-color: #056052;
+
+}
+
+.ques-section{
+  background-color: white;
+
+}
+
+.question{
+  border: 1px solid;
+  min-width: 475px;
+
+}
+
+.heading{
+  border-bottom: 1px solid;
+
+}
+
+.img-part{
+  display: inline-block;
+  width: 172px;
+}
+
+.poll-part{
+  display: inline-block;
+  border-left: 1px solid;
+
+}
+
+.option-text{
+  padding: 10px;
+}
+
+.poll-link{
+  text-decoration: none;
+  border: 3px solid #079e87;
+  color: #079e87;
+  padding: 6px;
+  border-radius: 5px;
+  display: block;
+  font-weight: bold;
+  margin: 10px;
+  background-color: white;
+  min-width: 300px;
+  cursor: pointer;
+
+}
+
+/* Single Question STYLE */
+
+.ques-section{
+  text-align: center;
+}
+
+.question{
+  display: inline-block;
+  padding: 20PX;
+
+}
+
+/* Results STYLE */
+
+.ques-one-box, .ques-two-box{
+  border: 2px solid black;
+  padding: 20px;
+  border-radius: 6px;
+  margin-left: 6%;
+  margin-bottom: 3%;
+
+}
+
+/* IMG PART STYLE */
+
+.img-part img{
+  margin-bottom: 40%;
+
+}
+
+/* LeaderBoard STYLE / LBBOX STYLE */
+
+.LBBox-section{
+  text-align: center;
+}
+
+.LBBox{
+  display: inline-block;
+  border: 2px solid #aaaaaa;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.LBBox div {
+  display: inline-block;
+}
+
+.LBBox-img{
+  border-right: 2px solid #aaaaaa;
+  padding: 7px;
+}
+
+.LBBox-ques-stats{
+  padding: 6px 15px;
+  border-right: 2px solid #aaaaaa;
+}
+
+.LBBox-ques-stats h2{
+  margin-top: 0;
+}
+
+.LBBox-score{
+  padding: 10px;
+
+}
