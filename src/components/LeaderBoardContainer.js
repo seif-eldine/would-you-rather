@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {connect} from "react-redux";
 import LBBoxContainer from "./LBBoxContainer";
+import {getUsers} from '../redux/users/usersActions'
 
 function LeaderBoardContainer(props) {
+
+  useEffect( () => {
+    props.fetchUsers()
+  }, []);
 
   const allUsers = [];
   const data = props.receivedUsersFromState
@@ -43,4 +48,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(LeaderBoardContainer);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchUsers: () => dispatch(getUsers())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeaderBoardContainer);

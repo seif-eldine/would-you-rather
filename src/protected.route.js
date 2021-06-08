@@ -1,9 +1,10 @@
 import React from 'react';
 import { Redirect, Route } from "react-router-dom";
+import { urlRequested } from './redux/users/usersActions'
 import {connect} from "react-redux";
 
 
-const ProtectedRoute = ({component: Component, isLogged, ...rest}) => {
+const ProtectedRoute = ({component: Component, isLogged,shipUrl, ...rest}) => {
     return (
         <Route {...rest} 
         render={
@@ -11,13 +12,9 @@ const ProtectedRoute = ({component: Component, isLogged, ...rest}) => {
                 if(isLogged){
                    return <Component {...props} />
                 }else{
-                    return <Redirect to={ {
-                        pathname: "/login",
-                        state: {
-                            from: props.location
-                        }
-                    }
-                    } />
+                    const searchedParams = props.location.pathname
+                    shipUrl(searchedParams)
+                    return <Redirect to={{pathname: "/"}} />
                 }
             }
         } />
@@ -30,4 +27,10 @@ const mapStateToProps = state => {
     }
   }
 
-export default connect(mapStateToProps)(ProtectedRoute);
+const mapDispatchToProps = dispatch => {
+    return {
+        shipUrl: (urlShipped) => dispatch(urlRequested(urlShipped))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProtectedRoute);

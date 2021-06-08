@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {connect} from "react-redux";
 import {showAnsweredQuestions, showUnansweredQuestions} from "../redux/questions/quesActions"
-import AnswersContainer from "./AnswersContainer";
+// import AnswersContainer from "./AnswersContainer";
 //Component
 import QuesContainer from "./QuesContainer";
 
 function HomeContainer(props) {
+
+  useEffect( () => {
+    props.showTheUnanswered()
+  }, []);
+
+
   const dataQues = props.questions.questions;
   const dataUser = props.receivedUsersFromState;
 
@@ -83,8 +89,8 @@ const answeredAfterSorted = usersAnsweredQuestions.sort( compareNumbers );
         </div>
         <div className='ques-list'>
           {props.questionsShower ? 
-          unAnsweredAfterSorted.map(ques =>  <QuesContainer key={ques.id} avatar={avatarFinder(ques)} id={ques.id} author={nameFinder(ques)} text={ques.optionOne.text}/>)
-        : answeredAfterSorted.map(ques => <AnswersContainer key={ques.id} avatar={avatarFinder(ques)} id={ques.id} author={nameFinder(ques)} text={ques.optionOne.text} textOne={ques.optionOne.text} textTwo={ques.optionTwo.text} votesOne={ques.optionOne.votes} votesTwo={ques.optionTwo.votes} />)}
+          unAnsweredAfterSorted.map(ques => <QuesContainer key={ques.id} avatar={avatarFinder(ques)} id={ques.id} author={nameFinder(ques)} text={ques.optionOne.text} textOne={ques.optionOne.text} textTwo={ques.optionTwo.text} votesOne={ques.optionOne.votes} votesTwo={ques.optionTwo.votes}/>)
+        : answeredAfterSorted.map(ques =>   <QuesContainer key={ques.id} avatar={avatarFinder(ques)} id={ques.id} author={nameFinder(ques)} text={ques.optionOne.text} textOne={ques.optionOne.text} textTwo={ques.optionTwo.text} votesOne={ques.optionOne.votes} votesTwo={ques.optionTwo.votes} />)}
         </div>
       </div>
     </div>

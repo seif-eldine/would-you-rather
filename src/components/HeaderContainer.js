@@ -21,7 +21,7 @@ function HeaderContainer(props) {
             <li>Hello, {props.isLogged} <img alt="" /></li>
             <li onClick={() => {
               props.logoutUser()
-              props.history.push('/login')
+              props.history.push('/')
             }}>Logout</li>
           </ul> : ''}
           
@@ -39,7 +39,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logoutUser: () =>    dispatch(logUserOut())
+    logoutUser: () => dispatch(logUserOut())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HeaderContainer));

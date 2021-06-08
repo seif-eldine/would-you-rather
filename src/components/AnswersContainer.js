@@ -16,7 +16,7 @@ function AnswersContainer(props) {
           <h3>Would you rather ...</h3>
           <h4 className='option-text'>{props.text}</h4>
           <h3>Or ...</h3>
-          <Link to={`questions/${props.id}/results`}> 
+          <Link to={`questions/${props.id}`}> 
             <button className='poll-link'>View Poll</button>
           </Link>
         </div>

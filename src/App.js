@@ -12,7 +12,7 @@ import { getUsers } from "../src/redux/users/usersActions"
 
 import { Route, Switch } from "react-router-dom";
 import QuesDetailsContainer from "./components/QuesDetailsContainer";
-import ResultsContainer from "./components/ResultsContainer";
+// import ResultsContainer from "./components/ResultsContainer";
 import LoginContainer from './components/LoginContainer';
 import  ProtectedRoute  from "./protected.route";
 import PageNotFound from "./components/notFound";
@@ -30,13 +30,15 @@ function App() {
       <div className='App'>
         <HeaderContainer />
         <Switch>
-          <Route path='/questions/:question_id/results' component={ResultsContainer} />
+
+          {/* <ProtectedRoute path='/questions/:question_id/results' component={ResultsContainer} /> */}
+          {/* <ProtectedRoute path='/questions/:question_id' component={ResultsContainer} /> */}
           <ProtectedRoute path='/questions/:question_id' component={QuesDetailsContainer} />
-          <ProtectedRoute path='/questions' component={HomeContainer} />
+          <ProtectedRoute path='/questions' exact={true} component={HomeContainer} />
           <ProtectedRoute path='/add' component={NewQuesContainer} />
           <ProtectedRoute path='/leaderboard' component={LeaderBoardContainer} />
-          <Route path='/login' component={LoginContainer}/>
-          <Route path='*' component={PageNotFound} />
+          <Route path='/' exact={true} component={LoginContainer}/>
+          <ProtectedRoute path='*' component={PageNotFound} />
         </Switch>
       </div>
   );

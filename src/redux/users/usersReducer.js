@@ -1,6 +1,7 @@
 const initialState = {
   users: {},
-  loggedUser: null
+  loggedUser: null,
+  urlSearched: '/questions'
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -23,9 +24,16 @@ const usersReducer = (state = initialState, action) => {
           loggedUser: null
         }
 
+      case "urlRequest":
+        return {
+          ...state,
+          urlSearched: action.payload
+        }
+
     default:
       return state;
   }
 };
+
 
 export default usersReducer;

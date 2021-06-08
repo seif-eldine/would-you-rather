@@ -134,7 +134,9 @@ ul li{
   padding: 17px;
   border-radius: 26px;
   background-color: #056052;
-
+  -webkit-box-shadow: 10px 9px 12px -3px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 9px 12px -3px rgba(0,0,0,0.75);
+  box-shadow: 10px 9px 12px -3px rgba(0,0,0,0.75);
 }
 
 .ques-section{
@@ -145,6 +147,7 @@ ul li{
 .question{
   border: 1px solid;
   min-width: 475px;
+  border-radius: 10px;
 
 }
 

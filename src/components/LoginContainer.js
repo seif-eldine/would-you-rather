@@ -4,6 +4,16 @@ import {logUserIn, logUserOut} from "../redux/users/usersActions"
 
 function LoginContainer(props) {
 
+  const requestedUrl = props.searchedParams
+
+  let direction = null
+
+  if(requestedUrl === null || requestedUrl === "/"){
+    direction = "/questions"
+  } else {
+    direction = requestedUrl
+  }
+
   const usersInState = props.receivedUsersFromState
   const usersAvailable = []
 
@@ -16,7 +26,7 @@ const handleSubmission = (e) => {
   const userId = document.getElementById('userOption').value
   props.loginUser(userId)
   setTimeout(() => {
-    props.history.push('/questions')
+    props.history.push(direction)
   }, 400)
 }
 
@@ -44,6 +54,7 @@ const handleSubmission = (e) => {
 const mapStateToProps = state => {
   return {
     isLogged : state.users.loggedUser,
+    searchedParams : state.users.urlSearched,
     receivedUsersFromState: state.users.users
   }
 }

@@ -26,3 +26,10 @@ export const logUserOut = () => {
     type: "logout",
   }
 }
+
+export const urlRequested = (url) => {
+  return {
+    type: "urlRequest",
+    payload: url
+  }
+}
