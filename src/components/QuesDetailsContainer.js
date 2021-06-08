@@ -54,14 +54,6 @@ function QuesDetailsContainer(props) {
     }
   };
 
-  // const idFinder = (loggedUser) => {
-  //   for(let rec in dataUser) {
-  //     if(loggedUser === dataUser[rec].name){
-  //       return dataUser[rec].id
-  //     }
-  //   }
-  // }
-
   //////////////////// -- end of the functional functions -- ////////////////////
 
   // Below is Results Section >>
