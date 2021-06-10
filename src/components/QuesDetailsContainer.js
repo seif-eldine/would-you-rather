@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 import { saveQuestionAnswer } from "../redux/questions/quesActions";
 import ProgressBar from './ProgressBar';
 
@@ -12,8 +14,9 @@ const styleObj = {
 
 function QuesDetailsContainer(props) {
 
-  const data = props.questions.questions;
+  const history = useHistory();
 
+  const data = props.questions.questions;
   const questions = [];
   const dataUser = props.receivedUsersFromState;
 
@@ -23,23 +26,30 @@ function QuesDetailsContainer(props) {
 
   const paramsId = props.match.params.question_id
 
-  const choosenQues = questions.filter( ques => ques.id === paramsId);
-
+  let choosenQues = null;
   let optOne = "";
   let optTwo = "";
 
-  if (choosenQues.length > 0) {
-    optOne = choosenQues[0].optionOne.text;
-    optTwo = choosenQues[0].optionTwo.text;
+  for(let quest of questions){
+    if(quest.id === paramsId){
+      choosenQues = quest
+    }
   }
 
-  // Creating the functional components to extract ( Avatar - Name - ID )
+  if(choosenQues === null){
+    history.push('/not-found')
+  } else {
+    optOne = choosenQues.optionOne.text;
+    optTwo = choosenQues.optionTwo.text;
+  }
+ 
+  // Creating the functional components to extract ( Avatar - Name )
 
   const avatarFinder = (choosenQues) => {
     for (let rec in dataUser) {
-      if(choosenQues[0] === undefined) return
+      if(choosenQues === null) return
 
-      if (choosenQues[0].author === dataUser[rec].id) {
+      if (choosenQues.author === dataUser[rec].id) {
         return dataUser[rec].avatarURL;
       }
     }
@@ -47,14 +57,14 @@ function QuesDetailsContainer(props) {
 
   const nameFinder = (choosenQues) => {
     for (let rec in dataUser) {
-      if(choosenQues[0] === undefined) return
-      if (choosenQues[0].author === dataUser[rec].id) {
+      if(choosenQues === null) return
+      if (choosenQues.author === dataUser[rec].id) {
         return dataUser[rec].name;
       }
     }
   };
 
-  //////////////////// -- end of the functional functions -- ////////////////////
+  //////////////////// -- end of the functional components -- ////////////////////
 
   // Below is Results Section >>
 
@@ -73,7 +83,7 @@ function QuesDetailsContainer(props) {
     }
   }
 
-  let soloElement = choosenQues[0]
+  let soloElement = choosenQues
 
   let oneVotes = soloElement ? soloElement.optionOne.votes.length : 0
   let twoVotes = soloElement ? soloElement.optionTwo.votes.length : 0
@@ -84,17 +94,17 @@ function QuesDetailsContainer(props) {
   let optionOneChoosen = false;
   let optionTwoChoosen = false;
 
-  if(props.isLogged && soloElement.optionOne.votes.includes(userId)){
-    optionOneChoosen = true;
-  } else if (props.isLogged && soloElement.optionTwo.votes.includes(userId)) { 
-    optionTwoChoosen = true
+  if(soloElement){
+    if(props.isLogged && soloElement.optionOne.votes.includes(userId)){
+      optionOneChoosen = true;
+    } else if (props.isLogged && soloElement.optionTwo.votes.includes(userId)) { 
+      optionTwoChoosen = true
+    }
+  
   }
-
+  
 
   const isItAQuestion = () => { 
-    console.log(" The option one", optionOneChoosen)
-    console.log(" The option Two", optionTwoChoosen)
-  
     if(optionOneChoosen || optionTwoChoosen){
       return false 
     }
@@ -128,12 +138,7 @@ function QuesDetailsContainer(props) {
           <h3>{nameFinder(choosenQues)}</h3>
         </div>
         <div className='img-part'>
-          <img
-            src={avatarFinder(choosenQues)}
-            height={100}
-            width={100}
-            alt='avatar'
-          />
+          <img src={avatarFinder(choosenQues)} height={100} width={100} alt='avatar'/>
         </div>
         <div className='poll-part'>
           <h3>Would you rather ...</h3>
@@ -148,7 +153,7 @@ function QuesDetailsContainer(props) {
           </form>
         </div>
       </div>
-    </div>) : <div className='ques-section'>
+    </div>) : (<div className='ques-section'>
       <div className='question'>
         <div className='heading'>
           <h3>{nameFinder(choosenQues)}</h3>
@@ -180,7 +185,7 @@ function QuesDetailsContainer(props) {
           </div>
         </div>
       </div>
-    </div>
+    </div>)
   );
 }
 
